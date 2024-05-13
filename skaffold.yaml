@@ -1,0 +1,12 @@
+apiVersion: skaffold/v4beta10
+kind: Config
+metadata:
+  name: my-app
+
+manifests:
+  helm:
+    releases:
+      - name: skaffold-templated
+        chartPath: charts
+        setValueTemplates:
+          token: '{{ cmd "bash" "-c" "bash ./token.bash" }}'

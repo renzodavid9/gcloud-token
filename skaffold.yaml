@@ -5,8 +5,12 @@ metadata:
 
 manifests:
   helm:
+    flags:
+      global:
+        - --post-renderer=./token.bash
     releases:
       - name: skaffold-templated
         chartPath: charts
+        skipBuildDependencies: true
         setValueTemplates:
-          token: '{{ cmd "bash" "-c" "bash ./token.bash" }}'
+          token: 'some-token'
